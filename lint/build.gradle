@@ -4,16 +4,22 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 ext {
-    lintVersion = "31.1.0"
+    lintVersion = "31.1.0" // Gradle version + 23.0
 }
 
 dependencies {
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib:1.7.21"
     compileOnly "com.android.tools.lint:lint-api:$lintVersion"
     compileOnly "com.android.tools.lint:lint-checks:$lintVersion"
+}
+
+jar {
+    manifest {
+        attributes("Lint-Registry-v2": "com.rickyslash.lint.MyIssueRegistry")
+    }
 }
